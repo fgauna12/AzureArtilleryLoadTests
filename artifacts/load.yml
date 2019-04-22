@@ -1,0 +1,15 @@
+config:
+ ensure:
+   p95: 3000
+ environments:
+   prod:
+     target: 'https://gaunacode.com'
+     phases:
+     - name: "constant load"
+       duration: 1800
+       arrivalRate: 5
+scenarios:
+ - name: "Main Page"
+   flow:
+   - get:
+       url: "/"
