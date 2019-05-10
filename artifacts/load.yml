@@ -6,7 +6,7 @@ config:
      target: 'https://gaunacode.com'
      phases:
      - name: "constant load"
-       duration: 1800
+       duration: 180
        arrivalRate: 5
 scenarios:
  - name: "Main Page"
