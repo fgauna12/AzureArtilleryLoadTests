@@ -14,4 +14,4 @@ task DockerPush {
     }
 }
 
-task . DockerBuild
+task . DockerBuild, DockerPush
