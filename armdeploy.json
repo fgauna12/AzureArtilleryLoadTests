@@ -1,0 +1,110 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_ZRS"
+            ],
+            "metadata": {
+                "description": "Storage Account type"
+            }
+        },
+        "image": {
+           "type": "string",
+           "defaultValue": "fgauna12/gaunaloadyou",
+           "metadata": {
+                "description": "The container image name"
+            }
+        },
+        "name": {
+           "type": "string",
+           "defaultValue": "loadtest",
+           "metadata": {
+                "description": "The name of the load test"
+            }
+        }, 
+        "timeStamp": {
+            "type": "string",
+            "defaultValue": "[uniquestring(resourceGroup().id)]",
+            "metadata": {
+                "description": "A timestamp that identifies this test run"
+            }
+        },
+        "artillery-environment": {
+           "type": "string",
+           "metadata": {
+                "description": ""
+            }
+        },
+        "artillery-file": {
+           "type": "string",
+           "metadata": {
+                "description": ""
+            }
+        }
+    },
+    "variables": {
+        "cpuCores": "0.5",
+        "memoryInGb": "0.7",
+        "storageAccountName": "[concat('results', uniquestring(resourceGroup().id))]",
+        "shareContainerGroupName": "createshare-containerinstance",
+        "containerGroupName": "[concat('artillery-', parameters('name'), '-', parameters('timeStamp'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('storageAccountName')]",
+            "apiVersion": "2017-10-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('storageAccountType')]"
+            },
+            "kind": "Storage",
+            "properties": {}
+        },
+        {
+            "name": "[variables('shareContainerGroupName')]",
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "apiVersion": "2018-02-01-preview",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
+            ],
+            "properties": {
+                "containers": [
+                    {
+                        "name": "[variables('containerGroupName')]",
+                        "properties": {
+                            "image": "[parameters('image')]",
+                            "environmentVariables": [
+                                {
+                                    "name": "ARTILLERY_ENVIRONMENT",
+                                    "value": "[parameters('artillery-environment')]"
+                                },
+                                {
+                                    "name": "ARTILLERYIO_FILE",
+                                    "value": "[parameters('artillery-file')]"
+                                }
+                            ],
+                            "resources": {
+                                "requests": {
+                                    "cpu": "[variables('cpuCores')]",
+                                    "memoryInGb": "[variables('memoryInGb')]"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "restartPolicy": "Never",
+                "osType": "Linux"
+            }
+        }
+    ],
+    "outputs": {
+    }
+}
