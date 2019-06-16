@@ -38,7 +38,7 @@ COPY samples/load.yml .
 
 ``` bash
 $ docker build -t "[image name]" . 
-$ docker push
+$ docker push "[image name]"
 ```
 
 ### 4. Run Container From Azure
