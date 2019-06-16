@@ -40,8 +40,7 @@ else {
         -ResourceGroupName "$Environment-$LoadTestName-loadtest-rg" `
         -TemplateFile "armdeploy.json" `
         -Mode Incremental `
-        -Force `
-        -name $LoadTestName `
+        -loadTestName $LoadTestName `
         -timeStamp "$(Get-Date -Format 'yyyyMMddmmss')" `
         -artillery-environment $Environment `
         -artillery-file "load.yml"

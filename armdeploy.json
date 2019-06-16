@@ -21,9 +21,8 @@
                 "description": "The container image name"
             }
         },
-        "name": {
+        "loadTestName": {
            "type": "string",
-           "defaultValue": "loadtest",
            "metadata": {
                 "description": "The name of the load test"
             }
@@ -52,7 +51,7 @@
         "cpuCores": "0.5",
         "memoryInGb": "0.7",
         "storageAccountName": "[concat('results', uniquestring(resourceGroup().id))]",
-        "containerGroupName": "[concat('artillery-', parameters('name'), '-', parameters('timeStamp'))]"
+        "containerGroupName": "[concat('artillery-', parameters('loadTestName'))]"
     },
     "resources": [
         {
@@ -64,6 +63,9 @@
                 "name": "[parameters('storageAccountType')]"
             },
             "kind": "Storage",
+            "tags": {
+                "[concat(parameters('loadTestName'), ' Load Test')]": "[parameters('artillery-environment')]"
+            },
             "properties": {}
         },
         {
@@ -74,6 +76,9 @@
             "dependsOn": [
                 "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
             ],
+            "tags": {
+                "[concat(parameters('loadTestName'), ' Load Test')]": "[parameters('artillery-environment')]"
+            },
             "properties": {
                 "containers": [
                     {
@@ -88,6 +93,18 @@
                                 {
                                     "name": "ARTILLERYIO_FILE",
                                     "value": "[parameters('artillery-file')]"
+                                },
+                                {
+                                    "name": "AZ_STORAGE_ACCOUNT",
+                                    "value": "[variables('storageAccountName')]"
+                                },
+                                {
+                                    "name": "AZ_STORAGE_KEY",
+                                    "value": "[listkeys(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2019-04-01').keys[0].value]"
+                                },
+                                {
+                                    "name": "LOAD_TEST_NAME",
+                                    "value": "[parameters('loadTestName')]"
                                 }
                             ],
                             "resources": {
