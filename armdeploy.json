@@ -52,7 +52,6 @@
         "cpuCores": "0.5",
         "memoryInGb": "0.7",
         "storageAccountName": "[concat('results', uniquestring(resourceGroup().id))]",
-        "shareContainerGroupName": "createshare-containerinstance",
         "containerGroupName": "[concat('artillery-', parameters('name'), '-', parameters('timeStamp'))]"
     },
     "resources": [
@@ -68,7 +67,7 @@
             "properties": {}
         },
         {
-            "name": "[variables('shareContainerGroupName')]",
+            "name": "[variables('containerGroupName')]",
             "type": "Microsoft.ContainerInstance/containerGroups",
             "apiVersion": "2018-02-01-preview",
             "location": "[resourceGroup().location]",
