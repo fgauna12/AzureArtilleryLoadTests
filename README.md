@@ -36,7 +36,7 @@ COPY samples/load.yml .
 
 ### 3. Build and Publish Container
 
-``` console
+``` bash
 docker build -t "[image name]" . 
 docker push
 ```
@@ -49,7 +49,7 @@ https://raw.githubusercontent.com/fgauna12/AzureArtilleryLoadTests/master/armdep
 
 #### Bash (Azure CLI)
 
-``` console
+``` bash
 
 az group create -g "[resource group]" -l "[location]"
 
