@@ -37,8 +37,8 @@ COPY samples/load.yml .
 ### 3. Build and Publish Container
 
 ``` bash
-docker build -t "[image name]" . 
-docker push
+$ docker build -t "[image name]" . 
+$ docker push
 ```
 
 ### 4. Run Container From Azure
@@ -51,9 +51,9 @@ https://raw.githubusercontent.com/fgauna12/AzureArtilleryLoadTests/master/armdep
 
 ``` bash
 
-az group create -g "[resource group]" -l "[location]"
+$ az group create -g "[resource group]" -l "[location]"
 
-az group deployment create -g "[resource group]" -n "[load test name]" \
+$ az group deployment create -g "[resource group]" -n "[load test name]" \
     --template-file azuredeploy.json \
     --parameters loadTestName="[load test name]" \
     -timeStamp=2019-06-16 \
