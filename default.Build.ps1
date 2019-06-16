@@ -1,5 +1,5 @@
 
-$ImageName = "fgauna12/gaunaloadyou:latest"
+$ImageName = "fgauna12/gaunastressyou:latest"
 
 task DockerBuild{
     exec { 

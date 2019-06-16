@@ -16,7 +16,7 @@
         },
         "image": {
            "type": "string",
-           "defaultValue": "fgauna12/gaunaloadyou",
+           "defaultValue": "fgauna12/gaunastressyou:1.0.0",
            "metadata": {
                 "description": "The container image name"
             }

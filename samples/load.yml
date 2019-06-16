@@ -3,7 +3,7 @@ config:
    p95: 3000
  environments:
    prod:
-     target: 'https://gaunacode.com'
+     target: 'https://yourwebsite.com'
      phases:
      - name: "constant load"
        duration: 20

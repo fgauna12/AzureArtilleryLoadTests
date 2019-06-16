@@ -36,8 +36,9 @@ COPY samples/load.yml .
 
 ### 3. Build and Publish Container
 
-``` bash
-docker build -t [image name] . && docker push
+``` cobnsole
+docker build -t [image name] . 
+docker push
 ```
 
 ### 4. Run Container From Azure
@@ -48,7 +49,7 @@ https://raw.githubusercontent.com/fgauna12/AzureArtilleryLoadTests/master/armdep
 
 #### Bash (Azure CLI)
 
-``` bash
+``` console
 
 az group create -g [resource group] -l [location]
 
@@ -77,11 +78,7 @@ param(
     # The name of the load test
     [Parameter(Mandatory = $true)]
     [string]
-    $LoadTestName,
-    # Test Mode
-    [Parameter()]
-    [switch]
-    $Test
+    $LoadTestName
 )
 
 $resourceGroupName = "$Environment-$LoadTestName-loadtest-rg"
@@ -106,8 +103,11 @@ New-AzResourceGroupDeployment `
 
 ### Open HTML Results from Blob Storage
 
-![](images/chrome_2019-06-16_08-04-09.png)
+Go to the storage account created and navigate down to the blobs. 
+
 ![](images/chrome_2019-06-16_08-03-50.png)
+
+You'll see an HTML report created.
 ![](images/chrome_2019-06-16_08-18-48.png)
 
 
