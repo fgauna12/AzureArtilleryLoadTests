@@ -54,11 +54,11 @@ https://raw.githubusercontent.com/fgauna12/AzureArtilleryLoadTests/master/armdep
 $ az group create -g "[resource group]" -l "[location]"
 
 $ az group deployment create -g "[resource group]" -n "[load test name]" \
-    --template-file azuredeploy.json \
+    --template-file arm.json \
     --parameters loadTestName="[load test name]" \
-    -timeStamp=2019-06-16 \
-    -artillery-environment "[environment as defined in artillery yml]" \
-    -artillery-file load.yml
+    timeStamp=2019-06-16 \
+    artillery-environment "[environment as defined in artillery yml]" \
+    artillery-file load.yml
 
 ```
 
