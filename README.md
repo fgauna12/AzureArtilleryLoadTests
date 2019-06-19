@@ -57,8 +57,9 @@ $ az group deployment create -g "[resource group]" -n "[load test name]" \
     --template-file arm.json \
     --parameters loadTestName="[load test name]" \
     timeStamp=2019-06-16 \
-    artillery-environment "[environment as defined in artillery yml]" \
-    artillery-file load.yml
+    artillery-environment="[environment as defined in artillery yml]" \
+    artillery-file=load.yml \
+    image=fgauna12/gaunastressyou:1.0.0
 
 ```
 
@@ -96,7 +97,8 @@ New-AzResourceGroupDeployment `
         -loadTestName $LoadTestName `
         -timeStamp "$(Get-Date -Format 'yyyyMMddmmss')" `
         -artillery-environment $Environment `
-        -artillery-file "load.yml"
+        -artillery-file "load.yml" `
+        -image "fgauna12/gaunastressyou:1.0.0"
 
 ```
 
