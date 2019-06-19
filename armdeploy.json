@@ -97,7 +97,7 @@
                                 },
                                 {
                                     "name": "LOAD_TEST_NAME",
-                                    "value": "[parameters('loadTestName')]"
+                                    "value": "[variables('containerGroupName')]"
                                 }
                             ],
                             "resources": {
