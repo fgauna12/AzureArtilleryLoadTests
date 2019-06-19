@@ -44,7 +44,7 @@
         "cpuCores": "0.5",
         "memoryInGb": "0.7",
         "storageAccountName": "[concat('results', uniquestring(resourceGroup().id))]",
-        "containerGroupName": "[concat('artillery-', parameters('loadTestName'))]"
+        "containerGroupName": "[concat('artillery-', parameters('loadTestName'), '-', replace(parameters('artillery-file'), '.', '-'))]"
     },
     "resources": [
         {
