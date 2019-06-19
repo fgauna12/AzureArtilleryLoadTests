@@ -54,7 +54,7 @@ https://raw.githubusercontent.com/fgauna12/AzureArtilleryLoadTests/master/armdep
 $ az group create -g "[resource group]" -l "[location]"
 
 $ az group deployment create -g "[resource group]" -n "[load test name]" \
-    --template-file arm.json \
+    --template-file armdeploy.json \
     --parameters loadTestName="[load test name]" \
     artillery-environment="[environment as defined in artillery yml]" \
     artillery-file=load.yml \
