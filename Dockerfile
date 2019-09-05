@@ -13,7 +13,7 @@ RUN ["npm", "install"]
 
 RUN pwsh -c Install-Module -Name Az -AllowClobber -Force
 
-COPY ./artifacts/ .
+# COPY ./artifacts/ .
 COPY ./container-scripts/ .
 
 # Build time argument
