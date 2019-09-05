@@ -1,5 +1,5 @@
 
-$ImageName = "fgauna12/gaunastressyou:latest"
+$ImageName = "fgauna12/gaunastressyou:preview"
 
 task DockerBuild{
     exec { 
@@ -9,8 +9,6 @@ task DockerBuild{
 
 task DockerPush {
     exec {
-        az acr login -n nebbiaregistry
-
         docker push $ImageName
     }
 }

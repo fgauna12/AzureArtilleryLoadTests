@@ -1,6 +1,6 @@
 {
   "name": "load-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,6 @@
   "license": "MIT",
   "dependencies": {
     "random-seed": "^0.3.0",
-    "artillery": "1.6.0-25"
+    "artillery": "1.6.0-26"
   }
 }
