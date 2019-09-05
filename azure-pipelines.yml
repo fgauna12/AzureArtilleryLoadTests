@@ -15,7 +15,8 @@ steps:
   inputs:
     command: 'buildAndPush'
     containerRegistry: fgauna12DockerHub
+    repository: fgauna12/gaunastressyou
     Dockerfile: '**/Dockerfile'
     tags: |
       $(Build.BuildId)
-      fgauna12/gaunastressyou:preview
+      preview
