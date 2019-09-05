@@ -9,6 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "random-seed": "^0.3.0",
-    "artillery": "1.6.0-26"
+    "artillery": "1.6.0-26",
+    "csv-parse": "4.2.0"
   }
 }
